@@ -146,6 +146,15 @@ const DetailhtmlhtmlForm = () => {
   const closeDropdown4 = () => {
     setIsOpen4(false);
   };
+  const [isOpen5, setIsOpen5] = useState(false);
+
+  const toggleDropdown5 = () => {
+    setIsOpen5(!isOpen5);
+  };
+
+  const closeDropdown5 = () => {
+    setIsOpen5(false);
+  };
 
   const handleInput = (event) => {
     setData({
@@ -157,6 +166,7 @@ const DetailhtmlhtmlForm = () => {
     closeDropdown2();
     closeDropdown3();
     closeDropdown4();
+    closeDropdown5();
   };
 
   const handleSubmit = async (e) => {
@@ -867,44 +877,81 @@ const DetailhtmlhtmlForm = () => {
             </div>
             <div className="flex flex-col w-full md:w-3/4  md:flex-row md:space-x-4  ">
               {/* Add fields for section 02 */}
-              <div className="flex  md:flex-col  justify-between md:w-1/5 ">
-                <p className=" text-sm text-gray-900 dark:text-white font-medium mb-4">
-                  स्थानीय स्तर सेवादल शिविर
-                </p>
-                <div className="flex  md:w-9/12   ">
-                  <div className="flex items-center mb-4 md:w-full">
-                    <input
-                      id="local-sevadal-yes"
-                      type="radio"
-                      name="localSevadal"
-                      value="हा"
-                      className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
-                      onChange={handleInput}
-                    />
-                    <label
-                      htmlFor="local-sevadal-yes"
-                      className="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                    >
-                      हा
-                    </label>
-                  </div>
 
-                  <div className="flex items-center mb-4 md:w-full">
-                    <input
-                      id="local-sevadal-no"
-                      type="radio"
-                      name="localSevadal"
-                      value="नहीं"
-                      className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-600 dark:focus:bg-blue-600 dark:bg-gray-700 dark:border-gray-600"
-                      onChange={handleInput}
+              <div className="w-4/5 md:w-52 mt-6 md:mt-0 flex items-center flex-col">
+                <button
+                  id="dropdownBgHoverButton"
+                  data-dropdown-toggle="dropdownBgHover"
+                  className="text-black bg-gray-400 hover:bg-gray-200 focus:ring-1 focus:outline-none focus:ring-gray-400 font-medium rounded-xl text-sm px-10 py-2.5  inline-flex items-center whitespace-nowrap w-full md:w-full text-center"
+                  type="button"
+                  onClick={toggleDropdown5}
+                >
+                  स्थानीय स्तर सेवादल शिविर
+                  <svg
+                    className="w-2.5 h-2.5 ms-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="m1 1 4 4 4-4"
                     />
-                    <label
-                      htmlFor="local-sevadal-no"
-                      className="block ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-                    >
-                      नही
-                    </label>
-                  </div>
+                  </svg>
+                </button>
+
+                {/* Dropdown menu */}
+                <div
+                  id="dropdownBgHover"
+                  className={`z-10 ${
+                    isOpen5 ? "" : "hidden"
+                  }  bg-gray-400 w-full rounded-sm -mt-2 shadow-lime-100 `}
+                >
+                  <ul
+                    className="p-3 space-y-1 text-sm text-gray-700"
+                    aria-labelledby="dropdownBgHoverButton"
+                  >
+                    <li>
+                      <div className="flex items-center p-2 rounded hover:bg-gray-100">
+                        <input
+                          id="local-sevadal-yes"
+                          type="radio"
+                          name="localSevadal"
+                          value="हा"
+                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                          onChange={handleInput}
+                        />
+                        <label
+                          htmlFor="local-sevadal-yes"
+                          className="w-full ms-2 text-sm font-medium text-gray-900 rounded"
+                        >
+                          हां
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div className="flex items-center p-2 rounded hover:bg-gray-100">
+                        <input
+                          id="local-sevadal-no"
+                          type="radio"
+                          name="localSevadal"
+                          value="नहीं"
+                          className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                          onChange={handleInput}
+                        />
+                        <label
+                          htmlFor="local-sevadal-no"
+                          className="w-full ms-2 text-sm font-medium text-gray-900 rounded"
+                        >
+                          नहीं
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
               </div>
 
