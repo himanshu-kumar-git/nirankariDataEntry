@@ -387,7 +387,7 @@ const DetailhtmlhtmlForm = () => {
                   type="button"
                   onClick={toggleDropdown}
                 >
-                  पंजीकृत संगत का विवरण
+                  पंजीकृत संगत का दैनिक विवरण
                   <svg
                     className="w-2.5 h-2.5 ms-3"
                     aria-hidden="true"
