@@ -14,14 +14,19 @@ import { useFirebase } from "./Context/Firebase";
 import { Navigate } from "react-router-dom";
 import { UserList } from "./AdminPannel/componentAdmin/UsersList";
 import { MonthlyTable } from "./AdminPannel/componentAdmin/MonthlyTable/MonthlyTable";
+import Entry from "./Pages/Entry";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <ToastContainer />
       <StickyNavbar className="fixed top-0 inset-x-0 z-50" />
       <div className="flex-1">
         <Routes>
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/entry" element={<Entry />} />
           <Route
             path="/signup"
             element={

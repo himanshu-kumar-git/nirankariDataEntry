@@ -78,11 +78,11 @@ function StickyNavbar() {
         className="p-1 font-normal"
         onClick={onclickOnLinks}
       >
-        <Link to="/monthlyEntry" className="flex items-center">
-          Monthly Entry
+        <Link to="/entry" className="flex items-center">
+          Entry
         </Link>
       </Typography>
-      <Typography
+      {/* <Typography
         as="li"
         variant="small"
         color="blue-gray"
@@ -92,7 +92,7 @@ function StickyNavbar() {
         <Link to="weeklyentry" className="flex items-center">
           Weekly Entry
         </Link>
-      </Typography>
+      </Typography> */}
       <Typography
         as="li"
         variant="small"

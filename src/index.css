@@ -1,3 +1,7 @@
+/* Add the @import statement for the font family */
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&display=swap');
+
+/* Your existing CSS styles go here */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -239,6 +239,7 @@ export const FirebaseProvider = (props) => {
     snapshot.forEach((doc) => {
       userData.push(doc.data());
     });
+    // console.log(userData);
     return userData;
   };
   const getUsersList = async () => {
@@ -310,6 +311,26 @@ export const FirebaseProvider = (props) => {
       });
   }, []);
 
+  const encodeEmail = (email) => {
+    return email.replace(/\./g, ",");
+  };
+
+  const handleStoreData = (username, userEmail, data) => {
+    const encodedEmail = encodeEmail(userEmail);
+    const userPath = `${username} ${encodedEmail} `;
+    const dataRef = ref(db, `Data/${userPath}/${Date.now()}`);
+
+    return new Promise((resolve, reject) => {
+      set(dataRef, data)
+        .then(() => {
+          resolve("Data stored successfully!");
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+
   const isLoggedIn = user ? true : false;
 
   return (
@@ -317,6 +338,7 @@ export const FirebaseProvider = (props) => {
       value={{
         signupUserWithEmailPassword,
         signInUserWithEmailAndPass,
+        handleStoreData,
         signInWithGoogle,
         isLoggedIn,
         handleUserData,
