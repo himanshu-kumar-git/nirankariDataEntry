@@ -32,6 +32,7 @@ const Preview = ({ masterData, editHandle }) => {
   }, [firebase]); // Ensure firebase is included in the dependency array
 
   const storeData = () => {
+    combinedObject.userEmail = firebase.user.email;
     if (firebase.user) {
       firebase
         .handleStoreData(userName, firebase.user.email, combinedObject)
