@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useFirebase } from "../Context/Firebase";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const firebase = useFirebase();
@@ -15,13 +16,26 @@ const LoginPage = () => {
       // Navigate to HomePage
       navigate("/");
     }
-  }, [firebase, navigate]);
+  }, [firebase.isLoggedIn, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("login in a user .... ");
-    await firebase.signInUserWithEmailAndPass(email, password);
-    console.log("succesfully login");
+
+    console.log("Logging in a user ...");
+
+    try {
+      const result = await firebase.signInUserWithEmailAndPass(email, password);
+
+      toast.success("Successfully logged in");
+
+      // Save user info to localStorage
+
+      localStorage.setItem("user", JSON.stringify(result));
+
+      navigate("/"); // Redirect to home page after login
+    } catch (error) {
+      toast.error("Error logging in", error);
+    }
   };
 
   return (
@@ -46,7 +60,7 @@ const LoginPage = () => {
                   id="email"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="name@company.com"
-                  required=""
+                  required
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
                 />
@@ -64,7 +78,7 @@ const LoginPage = () => {
                   id="password"
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  required=""
+                  required
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
                 />

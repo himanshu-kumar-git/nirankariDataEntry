@@ -40,6 +40,7 @@ function StickyNavbar() {
   const handleLogin = () => {
     if (firebase.isLoggedIn) {
       firebase.signOutUser();
+      localStorage.clear("user");
       navigate("/login");
       setIsLogin(false);
     } else {
@@ -100,7 +101,7 @@ function StickyNavbar() {
         className="p-1 font-normal"
         onClick={onclickOnLinks}
       >
-        <Link to="/userDashBoard" className="flex items-center">
+        <Link to="/" className="flex items-center">
           Dashboard
         </Link>
       </Typography>

@@ -192,44 +192,6 @@ export const FirebaseProvider = (props) => {
       अपंजीकृत_संगतों_की_संखिया,
     });
   };
-  const handleWeeklyEntrie = async (
-    EntryDate,
-    सत्संग_की_तिथि,
-    ज़ोन_का_नाम,
-    ज़ोन_का_नम्बर,
-    ब्रांच_का_नाम,
-    सत्संग_का_नाम,
-    स्थान,
-    सत्संग_का_समय,
-    स्टेज_की_सेवा,
-    स्टेज_संचालन_सेवा,
-    बहनों_की_संखिया,
-    भाइयो_की_संख्या,
-    कुल_संखिया,
-    नमस्कार_माया,
-    username
-  ) => {
-    await set(
-      ref(db, `WeeklyData/${username + " " + ब्रांच_का_नाम}/${Date.now()}`),
-      {
-        EntryDate,
-        सत्संग_की_तिथि,
-        ज़ोन_का_नाम,
-        ज़ोन_का_नम्बर,
-        ब्रांच_का_नाम,
-        सत्संग_का_नाम,
-        स्थान,
-        सत्संग_का_समय,
-        स्टेज_की_सेवा,
-        स्टेज_संचालन_सेवा,
-        बहनों_की_संखिया,
-        भाइयो_की_संख्या,
-        कुल_संखिया,
-        नमस्कार_माया,
-        username,
-      }
-    );
-  };
 
   const getUserData = async () => {
     const collectionRef = collection(firestore, "user");
@@ -348,7 +310,7 @@ export const FirebaseProvider = (props) => {
         handleCreateNewData1,
         getUserData,
         getUserMonthlyData,
-        handleWeeklyEntrie,
+
         getUsersList,
         getAllMonthlyData,
         dataArry,

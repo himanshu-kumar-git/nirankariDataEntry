@@ -26,7 +26,14 @@ const App = () => {
       <div className="flex-1">
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/entry" element={<Entry />} />
+          <Route
+            path="/entry"
+            element={
+              <ProtectedRoutesForUser>
+                <Entry />
+              </ProtectedRoutesForUser>
+            }
+          />
           <Route
             path="/signup"
             element={
@@ -75,6 +82,14 @@ export const ProtectedRoutesForAdmin = ({ children }) => {
     } else {
       return <Navigate to="/login" />;
     }
+  } else {
+    return <Navigate to="/login" />;
+  }
+};
+
+export const ProtectedRoutesForUser = ({ children }) => {
+  if (localStorage.getItem("user")) {
+    return children;
   } else {
     return <Navigate to="/login" />;
   }

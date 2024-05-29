@@ -2,9 +2,12 @@ import { useState } from "react";
 // import Background from "../../Components/layout/Background";
 
 import { useFirebase } from "../../Context/Firebase";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = () => {
   const firebase = useFirebase();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,14 +37,15 @@ const RegisterPage = () => {
           zoneNumber,
           zoneName
         );
-        console.log("user data save");
+        // toast.success("Registerd Successfully ..");
       } catch (error) {
         console.error("Error while handling user data:", error);
         // Handle the error here, such as displaying an error message to the user
       }
 
-      alert("Successfully Register");
-      firebase.signOutUser();
+      toast.success("Successfully Registerd");
+      // firebase.signOutUser();
+      navigate("/");
       setEmail("");
       setPassword("");
       setRepeatPassword("");
@@ -50,7 +54,7 @@ const RegisterPage = () => {
       setZoneNumber("");
       setBranchName("");
     } else {
-      alert("please fill all Detail Or Check Password");
+      toast.error("please fill all Detail Or Check Password");
     }
   };
 
